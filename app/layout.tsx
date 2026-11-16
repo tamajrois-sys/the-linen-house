@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const dmSerif = DM_Serif_Display({
   variable: "--font-dm-serif",
@@ -28,7 +30,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className={`${dmSerif.variable} ${dmSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
