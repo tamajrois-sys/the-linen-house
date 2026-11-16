@@ -144,3 +144,27 @@ export const landmarks = [
   { name: "Kampus Undip Tembalang", distance: "5 menit jalan kaki" },
   { name: "Jalan Banjarsari", distance: "Jalan utama sekitar" },
 ];
+
+// [CONTOH] pertanyaan umum, jawabannya harus disesuaikan dengan aturan asli
+export const faqs = [
+  {
+    q: "Kapan kost mulai dibuka?",
+    a: "Kost masih dalam pembangunan. Hubungi kami lewat WhatsApp untuk info terbaru dan daftar tunggu.",
+  },
+  {
+    q: "Apakah ada deposit?",
+    a: "Ada. Besarnya dan syarat pengembaliannya tercantum di bagian aturan dan biaya.",
+  },
+  {
+    q: "Boleh membawa tamu?",
+    a: "Tamu boleh bertamu di ruang santai pada jam tertentu dan tidak boleh menginap.",
+  },
+  {
+    q: "Apakah boleh membawa hewan peliharaan?",
+    a: "Saat ini tidak diperbolehkan.",
+  },
+  {
+    q: "Berapa minimal sewa?",
+    a: "Tergantung paket. Rinciannya ada di halaman Paket.",
+  },
+];
