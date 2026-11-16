@@ -176,3 +176,25 @@ export const durations = [
   { months: 6, label: "6 bulan", discountPercent: 10 },
   { months: 12, label: "12 bulan", discountPercent: 15 },
 ];
+
+// [CONTOH] galeri. Kalau foto asli sudah ada, taruh file di folder public/galeri
+// lalu isi src, misalnya "/galeri/kamar-classic.jpg". Selama src null, tampil placeholder.
+export type GalleryItem = {
+  id: string;
+  category: string;
+  caption: string;
+  src: string | null;
+};
+
+export const galleryCategories = ["Kamar", "Area bersama", "Lingkungan"];
+
+export const gallery: GalleryItem[] = [
+  { id: "g1", category: "Kamar", caption: "Kamar Classic", src: null },
+  { id: "g2", category: "Kamar", caption: "Kamar Deluxe", src: null },
+  { id: "g3", category: "Kamar", caption: "Kamar Premier", src: null },
+  { id: "g4", category: "Area bersama", caption: "Ruang santai", src: null },
+  { id: "g5", category: "Area bersama", caption: "Dapur bersama", src: null },
+  { id: "g6", category: "Area bersama", caption: "Teras dan taman", src: null },
+  { id: "g7", category: "Lingkungan", caption: "Jalan menuju kost", src: null },
+  { id: "g8", category: "Lingkungan", caption: "Sekitar kampus", src: null },
+];
