@@ -198,3 +198,6 @@ export const gallery: GalleryItem[] = [
   { id: "g7", category: "Lingkungan", caption: "Jalan menuju kost", src: null },
   { id: "g8", category: "Lingkungan", caption: "Sekitar kampus", src: null },
 ];
+
+// Alamat website. Ganti dengan domain sendiri setelah dibeli.
+export const siteUrl = "https://the-linen-house-theta.vercel.app";

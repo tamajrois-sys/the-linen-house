@@ -3,6 +3,7 @@ import { DM_Sans, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { DATA_MASIH_CONTOH, kost, siteUrl } from "@/lib/kost-data";
 
 const dmSerif = DM_Serif_Display({
   variable: "--font-dm-serif",
@@ -17,10 +18,24 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+const title = `${kost.name} | Kost Eksklusif di ${kost.area}, ${kost.city}`;
+const description = `Kost eksklusif yang hangat dan nyaman di kawasan ${kost.area}, ${kost.city}. Lihat paket, fasilitas, dan pesan lewat WhatsApp.`;
+
 export const metadata: Metadata = {
-  title: "The Linen House | Kost Eksklusif di Tembalang, Semarang",
-  description:
-    "Kost eksklusif yang hangat dan nyaman di kawasan Tembalang, Semarang. (Deskripsi sementara, akan diperbarui.)",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: siteUrl,
+    siteName: kost.name,
+    locale: "id_ID",
+    type: "website",
+  },
+  robots: DATA_MASIH_CONTOH
+    ? { index: false, follow: false }
+    : { index: true, follow: true },
 };
 
 export default function RootLayout({
