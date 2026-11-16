@@ -168,3 +168,11 @@ export const faqs = [
     a: "Tergantung paket. Rinciannya ada di halaman Paket.",
   },
 ];
+
+// [CONTOH] pilihan durasi dan potongan harga, WAJIB diganti dengan kebijakan asli
+export const durations = [
+  { months: 1, label: "Bulanan", discountPercent: 0 },
+  { months: 3, label: "3 bulan", discountPercent: 5 },
+  { months: 6, label: "6 bulan", discountPercent: 10 },
+  { months: 12, label: "12 bulan", discountPercent: 15 },
+];

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import DurationPicker from "@/components/DurationPicker";
+
 import {
   DATA_MASIH_CONTOH,
   contact,
@@ -100,6 +102,8 @@ export default function PaketPage() {
           ))}
         </div>
       </section>
+
+<DurationPicker />
 
       {/* Tabel perbandingan */}
       <section className="linen">
