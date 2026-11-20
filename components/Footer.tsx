@@ -3,7 +3,7 @@ import { contact, kost, navLinks } from "@/lib/kost-data";
 
 export default function Footer() {
   return (
-    <footer className="linen mt-20">
+    <footer className="linen">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 pb-24 pt-14 md:grid-cols-3 md:pb-14">
         <div>
           <p className="font-serif text-2xl text-foreground">{kost.name}</p>

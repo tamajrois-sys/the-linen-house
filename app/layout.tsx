@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Serif_Display } from "next/font/google";
+import { DM_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { DATA_MASIH_CONTOH, kost, siteUrl } from "@/lib/kost-data";
 
-const dmSerif = DM_Serif_Display({
+// Font judul: Fraunces (nama variabel dibiarkan --font-dm-serif agar CSS tidak berubah)
+const heading = Fraunces({
   variable: "--font-dm-serif",
   subsets: ["latin"],
-  weight: "400",
   display: "swap",
 });
 
@@ -44,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${dmSerif.variable} ${dmSans.variable}`}>
+    <html lang="id" className={`${heading.variable} ${dmSans.variable}`}>
       <body>
         <Navbar />
         <main>{children}</main>

@@ -29,6 +29,7 @@ export const navLinks = [
   { label: "Fasilitas", href: "/fasilitas" },
   { label: "Galeri", href: "/galeri" },
   { label: "Lokasi", href: "/lokasi" },
+  { label: "Aturan", href: "/aturan" },
   { label: "Kontak", href: "/kontak" },
 ];
 
