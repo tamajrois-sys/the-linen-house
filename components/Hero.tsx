@@ -6,7 +6,7 @@ import { contact, kost } from "@/lib/kost-data";
 
 // Kalau sudah punya foto suasana, taruh di public/hero.jpg lalu ubah null
 // di bawah menjadi "/hero.jpg". Foto stok harus berlisensi komersial.
-const HERO_PHOTO = null as string | null;
+const HERO_PHOTO = "/hero.jpg" as string | null;
 
 const waLink = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(
   `Halo ${kost.name}, saya ingin tahu kapan kost dibuka dan info paketnya.`

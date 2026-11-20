@@ -189,9 +189,9 @@ export type GalleryItem = {
 export const galleryCategories = ["Kamar", "Area bersama", "Lingkungan"];
 
 export const gallery: GalleryItem[] = [
-  { id: "g1", category: "Kamar", caption: "Kamar Classic", src: null },
-  { id: "g2", category: "Kamar", caption: "Kamar Deluxe", src: null },
-  { id: "g3", category: "Kamar", caption: "Kamar Premier", src: null },
+   { id: "g1", category: "Kamar", caption: "Kamar Classic (ilustrasi)", src: "/galeri/kamar-classic.jpg" },
+  { id: "g2", category: "Kamar", caption: "Kamar Deluxe (ilustrasi)", src: "/galeri/kamar-deluxe.jpg" },
+  { id: "g3", category: "Kamar", caption: "Kamar Premier (ilustrasi)", src: "/galeri/kamar-premier.jpg" },
   { id: "g4", category: "Area bersama", caption: "Ruang santai", src: null },
   { id: "g5", category: "Area bersama", caption: "Dapur bersama", src: null },
   { id: "g6", category: "Area bersama", caption: "Teras dan taman", src: null },

@@ -32,7 +32,7 @@ export default function AturanPage() {
             {DATA_MASIH_CONTOH && (
               <p className="mt-3 text-sm font-medium text-foreground">
                 Catatan: semua aturan dan biaya di halaman ini masih contoh,
-                belum final.
+                belum final pahami itu.
               </p>
             )}
           </Reveal>
