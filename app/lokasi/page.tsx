@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import PageHero from "@/components/PageHero";
 import { DATA_MASIH_CONTOH, contact, kost, landmarks } from "@/lib/kost-data";
 
 export const metadata: Metadata = {
@@ -19,23 +20,17 @@ const waLink = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponen
 export default function LokasiPage() {
   return (
     <>
-      <section className="linen">
-        <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
-          <Reveal>
-            <h1 className="text-4xl text-foreground md:text-5xl">Lokasi</h1>
-            <p className="mt-4 max-w-xl text-muted">
-              {kost.name} berada di kawasan {kost.area}, {kost.city}.
-            </p>
-            {DATA_MASIH_CONTOH && (
-              <p className="mt-3 text-sm font-medium text-foreground">
-                Catatan: peta di bawah hanya menunjukkan area {kost.area},
-                bukan titik kost yang sebenarnya. Patokan dan jarak juga masih
-                contoh.
-              </p>
-            )}
-          </Reveal>
-        </div>
-      </section>
+<PageHero
+  variant="lokasi"
+  eyebrow="Temukan kami"
+  title="Lokasi"
+  text={`${kost.name} berada di kawasan ${kost.area}, ${kost.city}.`}
+  note={
+    DATA_MASIH_CONTOH
+      ? `Catatan: peta di bawah hanya menunjukkan area ${kost.area}, bukan titik kost yang sebenarnya. Patokan dan jarak juga masih contoh.`
+      : undefined
+  }
+/>
 
       <section className="mx-auto max-w-6xl px-5 py-14 md:py-20">
         <Reveal>

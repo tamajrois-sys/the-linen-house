@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import FeatureFinder from "@/components/FeatureFinder";
+import PageHero from "@/components/PageHero";
 import { DATA_MASIH_CONTOH, facilityGroups, packages } from "@/lib/kost-data";
 
 export const metadata: Metadata = {
@@ -41,24 +43,18 @@ function CheckIcon() {
 export default function FasilitasPage() {
   return (
     <>
-      <section className="linen">
-        <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
-          <Reveal>
-            <h1 className="text-4xl text-foreground md:text-5xl">Fasilitas</h1>
-            <p className="mt-4 max-w-xl text-muted">
-              Dari isi kamar sampai keamanan, semua tercantum jelas supaya Anda
-              tahu apa yang didapat.
-            </p>
-            {DATA_MASIH_CONTOH && (
-              <p className="mt-3 text-sm font-medium text-foreground">
-                Catatan: daftar fasilitas di halaman ini masih contoh, belum
-                final.
-              </p>
-            )}
-          </Reveal>
-        </div>
-      </section>
-
+     <PageHero
+  variant="fasilitas"
+  eyebrow="Kenyamanan lengkap"
+  title="Fasilitas"
+  text="Dari isi kamar sampai keamanan, semua tercantum jelas supaya Anda tahu apa yang didapat."
+  note={
+    DATA_MASIH_CONTOH
+      ? "Catatan: daftar fasilitas di halaman ini masih contoh, belum final."
+      : undefined
+  }
+/>
+<FeatureFinder />
       <section className="mx-auto max-w-6xl px-5 py-14 md:py-20">
         <Reveal>
           <h2 className="text-3xl text-foreground md:text-4xl">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BookingForm from "@/components/BookingForm";
 import Reveal from "@/components/Reveal";
+import PageHero from "@/components/PageHero";
 import { DATA_MASIH_CONTOH, contact, kost } from "@/lib/kost-data";
 
 export const metadata: Metadata = {
@@ -13,27 +14,17 @@ export const metadata: Metadata = {
 export default function KontakPage() {
   return (
     <>
-      <section className="linen">
-        <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
-          <Reveal>
-            <h1 className="text-4xl text-foreground md:text-5xl">
-              Kontak dan pemesanan
-            </h1>
-            <p className="mt-4 max-w-xl text-muted">
-              Isi formulir singkat, lalu lanjutkan percakapan lewat WhatsApp.
-              Kost masih dalam pembangunan, jadi pesanan masuk sebagai daftar
-              tunggu.
-            </p>
-            {DATA_MASIH_CONTOH && (
-              <p className="mt-3 text-sm font-medium text-foreground">
-                Catatan: nomor WhatsApp dan email di halaman ini masih
-                contoh, belum tersambung ke siapa pun.
-              </p>
-            )}
-          </Reveal>
-        </div>
-      </section>
-
+<PageHero
+  variant="kontak"
+  eyebrow="Mari mengobrol"
+  title="Kontak dan pemesanan"
+  text="Isi formulir singkat, lalu lanjutkan percakapan lewat WhatsApp. Kost masih dalam pembangunan, jadi pesanan masuk sebagai daftar tunggu."
+  note={
+    DATA_MASIH_CONTOH
+      ? "Catatan: nomor WhatsApp dan email di halaman ini masih contoh, belum tersambung ke siapa pun."
+      : undefined
+  }
+/>
       <section className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-2 md:py-20">
         <Reveal>
           <BookingForm />

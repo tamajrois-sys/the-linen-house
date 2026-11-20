@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import PageHero from "@/components/PageHero";
 import DurationPicker from "@/components/DurationPicker";
+import PackageQuiz from "@/components/PackageQuiz";
 
 import {
   DATA_MASIH_CONTOH,
@@ -34,25 +36,17 @@ function waLinkFor(packageName: string) {
 export default function PaketPage() {
   return (
     <>
-      <section className="linen">
-        <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
-          <Reveal>
-            <h1 className="text-4xl text-foreground md:text-5xl">
-              Paket kamar
-            </h1>
-            <p className="mt-4 max-w-xl text-muted">
-              Pilih paket yang paling pas dengan kebutuhan Anda. Harga dan isi
-              paket dibuat jelas sejak awal.
-            </p>
-            {DATA_MASIH_CONTOH && (
-              <p className="mt-3 text-sm font-medium text-foreground">
-                Catatan: semua harga dan isi paket di halaman ini masih
-                contoh, belum final.
-              </p>
-            )}
-          </Reveal>
-        </div>
-      </section>
+<PageHero
+  variant="paket"
+  eyebrow="Pilih kamar"
+  title="Paket kamar"
+  text="Pilih paket yang paling pas dengan kebutuhan Anda. Harga dan isi paket dibuat jelas sejak awal."
+  note={
+    DATA_MASIH_CONTOH
+      ? "Catatan: semua harga dan isi paket di halaman ini masih contoh, belum final."
+      : undefined
+  }
+/>
 
       {/* Kartu paket */}
       <section className="mx-auto max-w-6xl px-5 py-14 md:py-20">
@@ -104,6 +98,7 @@ export default function PaketPage() {
       </section>
 
 <DurationPicker />
+<PackageQuiz />
 
       {/* Tabel perbandingan */}
       <section className="linen">

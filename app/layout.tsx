@@ -3,6 +3,8 @@ import { DM_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageChrome from "@/components/PageChrome";
+import Fx from "@/components/Fx";
 import { DATA_MASIH_CONTOH, kost, siteUrl } from "@/lib/kost-data";
 
 // Font judul: Fraunces (nama variabel dibiarkan --font-dm-serif agar CSS tidak berubah)
@@ -46,6 +48,8 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${heading.variable} ${dmSans.variable}`}>
       <body>
+        <PageChrome />
+        <Fx />
         <Navbar />
         <main>{children}</main>
         <Footer />

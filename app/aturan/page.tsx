@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import PageHero from "@/components/PageHero";
 import { DATA_MASIH_CONTOH, packages, rules } from "@/lib/kost-data";
 
 export const metadata: Metadata = {
@@ -20,24 +21,17 @@ const ruleList = [
 export default function AturanPage() {
   return (
     <>
-      <section className="linen">
-        <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
-          <Reveal>
-            <h1 className="text-4xl text-foreground md:text-5xl">
-              Aturan kost
-            </h1>
-            <p className="mt-4 max-w-xl text-muted">
-              Aturan dibuat sederhana supaya semua penghuni nyaman dan aman.
-            </p>
-            {DATA_MASIH_CONTOH && (
-              <p className="mt-3 text-sm font-medium text-foreground">
-                Catatan: semua aturan dan biaya di halaman ini masih contoh,
-                belum final pahami itu.
-              </p>
-            )}
-          </Reveal>
-        </div>
-      </section>
+     <PageHero
+  variant="aturan"
+  eyebrow="Jelas dan transparan"
+  title="Aturan kost"
+  text="Aturan dibuat sederhana supaya semua penghuni nyaman dan aman."
+  note={
+    DATA_MASIH_CONTOH
+      ? "Catatan: semua aturan dan biaya di halaman ini masih contoh, belum final."
+      : undefined
+  }
+/>
 
       <section className="mx-auto max-w-4xl px-5 py-14 md:py-20">
         <Reveal>
