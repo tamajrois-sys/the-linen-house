@@ -901,3 +901,450 @@ body::before {
     opacity: 0;
   }
 }
+
+/* ===== Garis simetris menyala (pengganti bokeh) ===== */
+
+/* Latar tanpa bokeh */
+.paper-cream {
+  --ln: rgba(196, 148, 80, 0.42);
+  --ln-hi: rgba(255, 214, 140, 1);
+  background-image:
+    radial-gradient(
+      420px circle at var(--mx, -999px) var(--my, -999px),
+      rgba(255, 221, 160, 0.5),
+      transparent 70%
+    ),
+    radial-gradient(45% 55% at 20% 25%, rgba(232, 190, 140, 0.32), transparent 70%),
+    radial-gradient(40% 50% at 80% 75%, rgba(201, 162, 126, 0.26), transparent 70%),
+    linear-gradient(180deg, #fbf7f0 0%, #f4ebdd 100%);
+  background-size: 100% 100%, 200% 200%, 200% 200%, 100% 100%;
+  background-position: 0 0, 0% 0%, 100% 100%, 0 0;
+  background-repeat: no-repeat;
+}
+.paper-mist {
+  --ln: rgba(63, 108, 140, 0.34);
+  --ln-hi: rgba(255, 226, 170, 1);
+  background-image:
+    radial-gradient(
+      420px circle at var(--mx, -999px) var(--my, -999px),
+      rgba(255, 255, 255, 0.6),
+      transparent 70%
+    ),
+    radial-gradient(45% 55% at 20% 25%, rgba(120, 160, 200, 0.28), transparent 70%),
+    radial-gradient(40% 50% at 80% 75%, rgba(201, 162, 126, 0.22), transparent 70%),
+    linear-gradient(180deg, #e9eef4 0%, #dce4ed 100%);
+  background-size: 100% 100%, 200% 200%, 200% 200%, 100% 100%;
+  background-position: 0 0, 0% 0%, 100% 100%, 0 0;
+  background-repeat: no-repeat;
+}
+.grain {
+  --ln: rgba(214, 165, 96, 0.4);
+  --ln-hi: rgba(255, 226, 170, 1);
+}
+
+/* Lapisan garis: dua warna, dipotong oleh pola (mask) */
+.paper::after,
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    105deg,
+    var(--ln) 0%,
+    var(--ln) 38%,
+    var(--ln-hi) 50%,
+    var(--ln) 62%,
+    var(--ln) 100%
+  );
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' x='-.5' y='-.5' width='2' height='2'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M60 6L114 60L60 114L6 60Z M60 30L90 60L60 90L30 60Z M60 6V30 M60 90V114 M6 60H30 M90 60H114 M0 14L14 0 M106 0L120 14 M0 106L14 120 M106 120L120 106'/><path stroke-width='1' d='M60 6L114 60L60 114L6 60Z M60 30L90 60L60 90L30 60Z M60 6V30 M60 90V114 M6 60H30 M90 60H114 M0 14L14 0 M106 0L120 14 M0 106L14 120 M106 120L120 106'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' x='-.5' y='-.5' width='2' height='2'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M60 6L114 60L60 114L6 60Z M60 30L90 60L60 90L30 60Z M60 6V30 M60 90V114 M6 60H30 M90 60H114 M0 14L14 0 M106 0L120 14 M0 106L14 120 M106 120L120 106'/><path stroke-width='1' d='M60 6L114 60L60 114L6 60Z M60 30L90 60L60 90L30 60Z M60 6V30 M60 90V114 M6 60H30 M90 60H114 M0 14L14 0 M106 0L120 14 M0 106L14 120 M106 120L120 106'/></svg>");
+  -webkit-mask-size: 120px 120px;
+  mask-size: 120px 120px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+.paper::after {
+  z-index: 0;
+}
+.wave-top {
+  z-index: 1;
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .paper-cream,
+  .paper-mist {
+    animation-name: bg-drift2;
+  }
+  .grain::after {
+    animation: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .paper::after,
+  .grain::after {
+    animation: line-shine 11s linear infinite;
+  }
+}
+@keyframes line-shine {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0% 0;
+  }
+}
+@keyframes bg-drift2 {
+  0%,
+  100% {
+    background-position: 0 0, 0% 0%, 100% 100%, 0 0;
+  }
+  50% {
+    background-position: 0 0, 100% 100%, 0% 0%, 0 0;
+  }
+}
+
+/* Hero tanpa bokeh (garis sudah dipasang di atas) */
+.grain::after {
+  z-index: -1;
+}
+
+/* ===== Kartu bermotif: tiap kartu berbeda ===== */
+.card-cozy,
+.card {
+  position: relative;
+}
+.card-cozy::before,
+.card::before {
+  content: "";
+  position: absolute;
+  inset: var(--d-in, 9px);
+  border-radius: var(--d-rad, 1rem);
+  border: var(--d-border, 0 solid transparent);
+  background-image: var(--d-bg, none);
+  background-size: var(--d-size, auto);
+  background-position: var(--d-pos, 0 0);
+  background-repeat: no-repeat;
+  pointer-events: none;
+  transition: inset 0.35s ease;
+}
+.card-cozy::after,
+.card::after {
+  content: "";
+  position: absolute;
+  width: var(--d-dia, 0px);
+  height: var(--d-dia, 0px);
+  top: var(--d-top, auto);
+  right: var(--d-right, auto);
+  bottom: var(--d-bottom, auto);
+  left: var(--d-left, auto);
+  background: var(--pg);
+  transform: rotate(45deg);
+  box-shadow: 0 0 12px var(--pg);
+  pointer-events: none;
+}
+
+/* Kartu 1, 4, 7...: siku emas di empat sudut */
+:is(.grid, .flex) > :nth-child(3n + 1) :is(.card-cozy, .card):not(.overflow-hidden),
+:is(.grid, .flex) > :is(.card-cozy, .card):nth-child(3n + 1):not(.overflow-hidden) {
+  --d-in: 10px;
+  --d-rad: 0;
+  --d-bg:
+    linear-gradient(var(--pg), var(--pg)), linear-gradient(var(--pg), var(--pg)),
+    linear-gradient(var(--pg), var(--pg)), linear-gradient(var(--pg), var(--pg)),
+    linear-gradient(var(--pg), var(--pg)), linear-gradient(var(--pg), var(--pg)),
+    linear-gradient(var(--pg), var(--pg)), linear-gradient(var(--pg), var(--pg));
+  --d-size: 22px 2px, 2px 22px, 22px 2px, 2px 22px, 22px 2px, 2px 22px, 22px 2px,
+    2px 22px;
+  --d-pos: 0 0, 0 0, 100% 0, 100% 0, 0 100%, 0 100%, 100% 100%, 100% 100%;
+  --d-dia: 8px;
+  --d-bottom: 14px;
+  --d-right: 14px;
+}
+
+/* Kartu 2, 5, 8...: bingkai jahitan */
+:is(.grid, .flex) > :nth-child(3n + 2) :is(.card-cozy, .card):not(.overflow-hidden),
+:is(.grid, .flex) > :is(.card-cozy, .card):nth-child(3n + 2):not(.overflow-hidden) {
+  --d-in: 8px;
+  --d-rad: 1.1rem;
+  --d-border: 1.5px dashed color-mix(in srgb, var(--pg) 55%, transparent);
+}
+
+/* Kartu 3, 6, 9...: bingkai garis ganda */
+:is(.grid, .flex) > :nth-child(3n) :is(.card-cozy, .card):not(.overflow-hidden),
+:is(.grid, .flex) > :is(.card-cozy, .card):nth-child(3n):not(.overflow-hidden) {
+  --d-in: 7px;
+  --d-rad: 1.1rem;
+  --d-border: 3px double color-mix(in srgb, var(--pg) 60%, transparent);
+  --d-dia: 8px;
+  --d-top: 12px;
+  --d-left: 12px;
+}
+
+@media (hover: hover) {
+  .card-cozy:hover::before,
+  .card:hover::before {
+    inset: 5px;
+  }
+}
+
+/* Judul bagian: label dengan garis penghias dan garis berpendar */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pg-dark));
+}
+.orn {
+  box-shadow: 0 0 12px color-mix(in srgb, var(--pg) 65%, transparent);
+}
+
+/* ===== Logo dan menu ===== */
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  color: var(--foreground);
+  text-decoration: none;
+  line-height: 1;
+  font-family: var(--font-logo), Georgia, serif;
+}
+.logo::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  align-self: center;
+  transform: rotate(45deg);
+  background: var(--pg);
+  box-shadow: 0 0 10px var(--pg);
+}
+.logo-the {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--pg-dark);
+}
+.logo-main {
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    100deg,
+    var(--foreground) 0%,
+    var(--foreground) 42%,
+    var(--pg-dark) 50%,
+    var(--foreground) 58%,
+    var(--foreground) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@media (max-width: 640px) {
+  .logo-main {
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+  }
+  .logo-the {
+    font-size: 0.95rem;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .logo-main {
+    animation: logo-shine 7s ease-in-out infinite;
+  }
+}
+@keyframes logo-shine {
+  0%,
+  35% {
+    background-position: 100% 0;
+  }
+  75%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.4rem 0;
+  font-family: var(--font-nav), system-ui, sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: -2px;
+  height: 2px;
+  border-radius: 9999px;
+  background: var(--pg);
+  box-shadow: 0 0 8px var(--pg);
+  transition: left 0.3s ease, right 0.3s ease;
+}
+.nav-link[aria-current="page"] {
+  color: var(--foreground);
+}
+.nav-link[aria-current="page"]::after {
+  left: 0;
+  right: 0;
+}
+.nav-link-m {
+  font-size: 0.9rem;
+  padding: 0;
+}
+@media (hover: hover) {
+  .nav-link:hover {
+    color: var(--foreground);
+  }
+  .nav-link:hover::after {
+    left: 0;
+    right: 0;
+  }
+}
+
+/* ===== Pola garis berbeda tiap bagian ===== */
+
+/* Hero polos kembali (tanpa garis dan tanpa bokeh) */
+.grain::after {
+  content: none;
+}
+
+/* 1: horizontal */
+.paper:nth-of-type(6n + 1)::after {
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='28' viewBox='0 0 100 28' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' filterUnits='userSpaceOnUse' x='-20' y='-20' width='240' height='80'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M0 14H100'/><path stroke-width='1' d='M0 14H100'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='28' viewBox='0 0 100 28' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' filterUnits='userSpaceOnUse' x='-20' y='-20' width='240' height='80'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M0 14H100'/><path stroke-width='1' d='M0 14H100'/></svg>");
+  -webkit-mask-size: 100px 28px;
+  mask-size: 100px 28px;
+}
+
+/* 2: vertikal */
+.paper:nth-of-type(6n + 2)::after {
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='100' viewBox='0 0 28 100' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' filterUnits='userSpaceOnUse' x='-20' y='-20' width='80' height='240'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M14 0V100'/><path stroke-width='1' d='M14 0V100'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='100' viewBox='0 0 28 100' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' filterUnits='userSpaceOnUse' x='-20' y='-20' width='80' height='240'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M14 0V100'/><path stroke-width='1' d='M14 0V100'/></svg>");
+  -webkit-mask-size: 28px 100px;
+  mask-size: 28px 100px;
+}
+
+/* 3: kotak-kotak */
+.paper:nth-of-type(6n + 3)::after {
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' filterUnits='userSpaceOnUse' x='-20' y='-20' width='160' height='160'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M0 32H64 M32 0V64'/><path stroke-width='1' d='M0 32H64 M32 0V64'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' filterUnits='userSpaceOnUse' x='-20' y='-20' width='160' height='160'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M0 32H64 M32 0V64'/><path stroke-width='1' d='M0 32H64 M32 0V64'/></svg>");
+  -webkit-mask-size: 64px 64px;
+  mask-size: 64px 64px;
+}
+
+/* 4: silang diagonal */
+.paper:nth-of-type(6n + 4)::after {
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' filterUnits='userSpaceOnUse' x='-20' y='-20' width='120' height='120'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M0 0L44 44 M44 0L0 44'/><path stroke-width='1' d='M0 0L44 44 M44 0L0 44'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' filterUnits='userSpaceOnUse' x='-20' y='-20' width='120' height='120'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M0 0L44 44 M44 0L0 44'/><path stroke-width='1' d='M0 0L44 44 M44 0L0 44'/></svg>");
+  -webkit-mask-size: 44px 44px;
+  mask-size: 44px 44px;
+}
+
+/* 5: kisi putus-putus dengan tanda + */
+.paper:nth-of-type(6n + 5)::after {
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' filterUnits='userSpaceOnUse' x='-20' y='-20' width='200' height='200'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M34 40H46 M40 34V46'/><path stroke-width='1.2' d='M34 40H46 M40 34V46'/><path stroke-width='1' stroke-dasharray='3 7' d='M0 40H30 M50 40H80 M40 0V30 M40 50V80'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' filterUnits='userSpaceOnUse' x='-20' y='-20' width='200' height='200'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M34 40H46 M40 34V46'/><path stroke-width='1.2' d='M34 40H46 M40 34V46'/><path stroke-width='1' stroke-dasharray='3 7' d='M0 40H30 M50 40H80 M40 0V30 M40 50V80'/></svg>");
+  -webkit-mask-size: 80px 80px;
+  mask-size: 80px 80px;
+}
+
+/* 6: tangga (garis ganda dengan sekat) */
+.paper:nth-of-type(6n)::after {
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='48' viewBox='0 0 120 48' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' filterUnits='userSpaceOnUse' x='-20' y='-20' width='280' height='100'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M0 12H120 M0 36H120 M30 12V36 M90 12V36'/><path stroke-width='1' d='M0 12H120 M0 36H120 M30 12V36 M90 12V36'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='48' viewBox='0 0 120 48' fill='none' stroke='black' stroke-linecap='round'><defs><filter id='g' filterUnits='userSpaceOnUse' x='-20' y='-20' width='280' height='100'><feGaussianBlur stdDeviation='2.4'/></filter></defs><path filter='url(%23g)' stroke-width='3' stroke-opacity='.8' d='M0 12H120 M0 36H120 M30 12V36 M90 12V36'/><path stroke-width='1' d='M0 12H120 M0 36H120 M30 12V36 M90 12V36'/></svg>");
+  -webkit-mask-size: 120px 48px;
+  mask-size: 120px 48px;
+}
+
+/* ===== Perbaikan tombol melayang (.btn tidak boleh menimpa fixed dan hidden) ===== */
+.btn.fixed {
+  position: fixed;
+}
+@media (min-width: 768px) {
+  .btn.md\:hidden {
+    display: none;
+  }
+}
+@media (max-width: 767.98px) {
+  .btn.hidden {
+    display: none;
+  }
+}
+
+/* ===== Garis gelombang ceria di latar halaman dalam ===== */
+.wavy {
+  display: none;
+  opacity: 0.6;
+}
+html[data-page]:not([data-page="beranda"]) .wavy {
+  display: block;
+  animation: wavy-fade 1s ease both;
+}
+.wavy-svg {
+  display: block;
+  width: 200%;
+  height: 100%;
+  will-change: transform;
+  transform-origin: left center;
+}
+
+/* Bagian bertekstur dibuat setengah transparan supaya gelombang terlihat */
+html:not([data-page="beranda"]) main section.linen {
+  background-color: color-mix(in srgb, var(--pg-tint) 38%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wavy-svg {
+    animation: wavy-run var(--dur, 50s) linear infinite var(--dir, normal);
+  }
+}
+
+@keyframes wavy-run {
+  0% {
+    transform: translateX(0) scaleY(0.85);
+  }
+  50% {
+    transform: translateX(-25%) scaleY(1.15);
+  }
+  100% {
+    transform: translateX(-50%) scaleY(0.85);
+  }
+}
+@keyframes wavy-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+
+/* ===== Gelombang pindah ke hero ===== */
+.wavy {
+  display: none !important;
+}
+html:not([data-page="beranda"]) main section.linen {
+  background-color: var(--pg-tint);
+}
+.hero-waves {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
+}

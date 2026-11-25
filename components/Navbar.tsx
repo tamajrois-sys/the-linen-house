@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { contact, kost, navLinks } from "@/lib/kost-data";
 
@@ -8,8 +9,17 @@ const waLink = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponen
   `Halo ${kost.name}, saya ingin bertanya tentang kost.`
 )}`;
 
+// Kata pertama nama kost jadi tulisan kecil miring, sisanya jadi logo utama
+const nameParts = kost.name.split(" ");
+const logoFirst = nameParts.length > 1 ? nameParts[0] : "";
+const logoMain = nameParts.length > 1 ? nameParts.slice(1).join(" ") : kost.name;
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <>
@@ -18,21 +28,19 @@ export default function Navbar() {
           aria-label="Menu utama"
           className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3"
         >
-          <Link
-            href="/"
-            className="font-serif text-2xl text-foreground"
-            onClick={() => setOpen(false)}
-          >
-            {kost.name}
+          <Link href="/" className="logo" onClick={() => setOpen(false)}>
+            {logoFirst && <span className="logo-the">{logoFirst}</span>}
+            <span className="logo-main">{logoMain}</span>
           </Link>
 
           {/* Menu untuk layar lebar */}
-          <ul className="hidden items-center gap-7 md:flex">
+          <ul className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-sm font-medium text-muted hover:text-foreground"
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                  className="nav-link"
                 >
                   {link.label}
                 </Link>
@@ -88,7 +96,8 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="flex min-h-[44px] items-center text-base font-medium text-foreground"
+                    aria-current={isActive(link.href) ? "page" : undefined}
+                    className="nav-link nav-link-m flex min-h-[44px] items-center"
                   >
                     {link.label}
                   </Link>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
 import Reveal from "@/components/Reveal";
+import HeroWaves from "@/components/HeroWaves";
 import { gallery } from "@/lib/kost-data";
 
 export type HeroVariant =
@@ -369,6 +370,8 @@ export default function PageHero({
         className="float-slower pointer-events-none absolute -bottom-20 -left-16 h-72 w-72 rounded-full opacity-30 blur-3xl"
         style={{ background: t.pg }}
       />
+
+<HeroWaves />
 
       <div className="relative z-[1] mx-auto grid max-w-6xl items-center gap-8 px-5 pb-28 pt-14 md:min-h-[480px] md:grid-cols-2 md:pb-32 md:pt-20">
         <div>
