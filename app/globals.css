@@ -1506,3 +1506,162 @@ html:not([data-page="beranda"]) main section.linen {
     transform: rotate(-1deg) translateY(-4px);
   }
 }
+
+/* ===== Tabel perbandingan cozy ===== */
+.cmp-wrap {
+  overflow-x: auto;
+  border-radius: 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--pg) 45%, transparent);
+  background: #ffffff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 2px 4px rgba(30, 41, 59, 0.06),
+    0 22px 44px rgba(120, 90, 60, 0.18);
+}
+.cmp {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+  font-size: 0.95rem;
+}
+.cmp th,
+.cmp td {
+  padding: 0.85rem 1rem;
+}
+.cmp-corner,
+.cmp-rowhead {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: #ffffff;
+  width: 190px;
+}
+.cmp-corner {
+  z-index: 3;
+  vertical-align: bottom;
+}
+.cmp-corner-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cmp-head {
+  position: relative;
+  vertical-align: top;
+  padding: 1.6rem 1rem 1.2rem;
+  border-top: 4px solid transparent;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+.cmp-head.is-focus {
+  border-top-color: var(--pg);
+}
+.cmp-head.is-focus,
+.cmp-cell.is-focus {
+  background: color-mix(in srgb, var(--pg) 13%, #ffffff);
+}
+.cmp-cell {
+  transition: background-color 0.25s ease;
+}
+.cmp tbody tr > * {
+  border-top: 1px solid color-mix(in srgb, var(--pg) 22%, transparent);
+}
+.cmp-pick {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-height: 44px;
+  text-align: left;
+  cursor: pointer;
+}
+.cmp-pill {
+  display: inline-block;
+  padding: 0.15rem 0.7rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--foreground) 25%, transparent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.cmp-price {
+  font-family: var(--font-dm-serif), Georgia, serif;
+  font-size: 1.85rem;
+  line-height: 1.1;
+  color: var(--foreground);
+}
+.cmp-price small {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.cmp-ribbon {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.7rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 9999px;
+  background: var(--sand);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+.cmp-group {
+  position: sticky;
+  left: 0;
+  background: var(--pg-tint);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pg-dark);
+  text-align: left;
+}
+.cmp-rowhead {
+  font-weight: 600;
+  color: var(--foreground);
+}
+.cmp-rowlabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.cmp-rowlabel svg {
+  color: var(--pg-dark);
+}
+.cmp-yes,
+.cmp-no {
+  display: inline-grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 9999px;
+}
+.cmp-yes {
+  background: var(--pg);
+  color: #ffffff;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--pg) 25%, transparent);
+}
+.cmp-no {
+  color: color-mix(in srgb, var(--foreground) 35%, transparent);
+}
+.cmp-inc {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  color: var(--muted);
+}
+.cmp-inc .cmp-yes {
+  flex-shrink: 0;
+  width: 1.3rem;
+  height: 1.3rem;
+}
+@media (hover: hover) {
+  .cmp tbody tr:hover > .cmp-cell:not(.is-focus) {
+    background: color-mix(in srgb, var(--pg) 7%, #ffffff);
+  }
+}

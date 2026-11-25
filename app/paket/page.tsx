@@ -3,6 +3,7 @@ import Reveal from "@/components/Reveal";
 import PageHero from "@/components/PageHero";
 import DurationPicker from "@/components/DurationPicker";
 import PackageQuiz from "@/components/PackageQuiz";
+import CompareTable from "@/components/CompareTable";
 
 import {
   DATA_MASIH_CONTOH,
@@ -100,123 +101,21 @@ export default function PaketPage() {
 <DurationPicker />
 <PackageQuiz />
 
-      {/* Tabel perbandingan */}
-      <section className="linen">
-        <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
-          <Reveal>
-            <h2 className="text-3xl text-foreground md:text-4xl">
-              Perbandingan paket
-            </h2>
-            <p className="mt-3 text-sm text-muted md:hidden">
-              Geser tabel ke samping untuk melihat semua paket.
-            </p>
-          </Reveal>
-
-          <div className="mt-8 overflow-x-auto rounded-2xl bg-white shadow-sm">
-            <table className="w-full min-w-[640px] border-collapse text-left text-sm">
-              <caption className="sr-only">
-                Perbandingan paket kamar {kost.name}
-              </caption>
-              <thead>
-                <tr className="border-b border-surface">
-                  <th scope="col" className="p-4 font-semibold text-foreground">
-                    &nbsp;
-                  </th>
-                  {packages.map((p) => (
-                    <th
-                      key={p.id}
-                      scope="col"
-                      className="p-4 font-serif text-lg font-normal text-foreground"
-                    >
-                      {p.name}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="align-top text-muted">
-                <tr className="border-b border-surface">
-                  <th scope="row" className="p-4 font-semibold text-foreground">
-                    Harga per bulan
-                  </th>
-                  {packages.map((p) => (
-                    <td key={p.id} className="p-4">
-                      Rp{rupiah(p.pricePerMonth)}
-                    </td>
-                  ))}
-                </tr>
-                <tr className="border-b border-surface">
-                  <th scope="row" className="p-4 font-semibold text-foreground">
-                    Ukuran kamar
-                  </th>
-                  {packages.map((p) => (
-                    <td key={p.id} className="p-4">
-                      {p.size}
-                    </td>
-                  ))}
-                </tr>
-                <tr className="border-b border-surface">
-                  <th scope="row" className="p-4 font-semibold text-foreground">
-                    Jumlah kamar
-                  </th>
-                  {packages.map((p) => (
-                    <td key={p.id} className="p-4">
-                      {p.rooms}
-                    </td>
-                  ))}
-                </tr>
-                <tr className="border-b border-surface">
-                  <th scope="row" className="p-4 font-semibold text-foreground">
-                    Minimal sewa
-                  </th>
-                  {packages.map((p) => (
-                    <td key={p.id} className="p-4">
-                      {p.minStayMonths} bulan
-                    </td>
-                  ))}
-                </tr>
-                <tr className="border-b border-surface">
-                  <th scope="row" className="p-4 font-semibold text-foreground">
-                    Cocok untuk
-                  </th>
-                  {packages.map((p) => (
-                    <td key={p.id} className="p-4">
-                      {p.suitableFor}
-                    </td>
-                  ))}
-                </tr>
-                <tr className="border-b border-surface">
-                  <th scope="row" className="p-4 font-semibold text-foreground">
-                    Di dalam kamar
-                  </th>
-                  {packages.map((p) => (
-                    <td key={p.id} className="p-4">
-                      <ul className="flex flex-col gap-1">
-                        {p.roomFeatures.map((f) => (
-                          <li key={f}>{f}</li>
-                        ))}
-                      </ul>
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th scope="row" className="p-4 font-semibold text-foreground">
-                    Sudah termasuk
-                  </th>
-                  {packages.map((p) => (
-                    <td key={p.id} className="p-4">
-                      <ul className="flex flex-col gap-1">
-                        {p.includes.map((inc) => (
-                          <li key={inc}>{inc}</li>
-                        ))}
-                      </ul>
-                    </td>
-                  ))}
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+    {/* Tabel perbandingan */}
+<section className="linen">
+  <div className="mx-auto max-w-6xl px-5 py-14 md:py-20">
+    <Reveal>
+      <p className="eyebrow">Bandingkan</p>
+      <h2 className="emboss mt-2 text-3xl text-foreground md:text-5xl">
+        Perbandingan paket
+      </h2>
+      <span className="orn" aria-hidden="true" />
+    </Reveal>
+    <div className="mt-8">
+      <CompareTable />
+    </div>
+  </div>
+</section>
 
       {/* Rincian biaya */}
       <section className="mx-auto max-w-3xl px-5 py-14 md:py-20">
