@@ -1348,3 +1348,161 @@ html:not([data-page="beranda"]) main section.linen {
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
   mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
 }
+
+/* ===== Footer cozy ===== */
+.foot::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10px;
+  border-top: 2px dashed color-mix(in srgb, var(--pg) 65%, transparent);
+}
+.foot-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 34px;
+  padding: 0 1rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--foreground);
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+.foot-diamond {
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  background: var(--pg);
+  box-shadow: 0 0 8px var(--pg);
+}
+.foot-wordmark {
+  font-family: var(--font-logo), Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+.foot-sticker {
+  align-self: flex-start;
+  padding: 0.7rem 1.1rem;
+  border-radius: 1rem;
+  border: 2px solid var(--foreground);
+  background: var(--pg-tint);
+  box-shadow: 4px 4px 0 var(--foreground);
+  font-family: var(--font-dm-serif), Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--foreground);
+  transform: rotate(-4deg);
+}
+.foot-title {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+.foot-title::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--pg), transparent);
+}
+.foot-card {
+  display: block;
+  border-radius: 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--pg) 40%, transparent);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 10px 24px rgba(120, 90, 60, 0.12);
+}
+.foot-step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 44px;
+  padding: 1.1rem 1.2rem;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.foot-step:active {
+  transform: translateY(-3px);
+}
+.foot-no {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 9999px;
+  background: var(--foreground);
+  color: #fbf7f0;
+  font-family: var(--font-dm-serif), Georgia, serif;
+  font-size: 1.25rem;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--pg) 45%, transparent);
+}
+.foot-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border-radius: 9999px;
+  border: 1.5px solid color-mix(in srgb, var(--foreground) 30%, transparent);
+  background: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-nav), system-ui, sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.foot-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--pg-dark);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+@media (hover: hover) {
+  .foot-pill:hover {
+    background: var(--pg-tint);
+    transform: translateY(-2px);
+  }
+  .foot-step:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 16px 30px rgba(120, 90, 60, 0.2);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .foot-sticker {
+    animation: sticker-wiggle 6s ease-in-out infinite;
+  }
+}
+@keyframes sticker-wiggle {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(-1deg) translateY(-4px);
+  }
+}
